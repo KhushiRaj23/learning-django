@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 
@@ -270,3 +270,29 @@ def validation1(request):
     form=InputForm()
     return render(request,'validation1.html',{'form':form,'submitted_details':submitted_details})
         
+        
+# Post redirect refresh/get pattern
+
+def refreshRedirect(request):
+    csrf_token=get_token(request)
+    if request.method=="POST":
+        textbox1=request.POST.get("textbox1")
+        textbox2=request.POST.get("textbox2")
+        # return HttpResponse(f"The values are {textbox1} and {textbox2}")
+        return redirect('success')
+    else:
+        return HttpResponse(f"""
+            <form method="POST">
+            <input type="hidden" name="csrfmiddlewaretoken" value="{csrf_token}" >
+                <label for="textbox1">Box 1:</label>
+                <input id="textbox1" type="text" name="textbox1"><br><br>
+                
+                <label for="textbox2">Box 2:</label>
+                <input id="textbox2" type="text" name="textbox2"><br><br>
+                
+                <input type="submit" value="Submit">
+            </form>
+        """) 
+        
+def success(request):
+    return render(request,'success.html')
