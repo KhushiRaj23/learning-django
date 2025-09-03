@@ -65,6 +65,8 @@ urlpatterns = [
     
     path('validation/',views.validation),
     
+# Form validation using customised error message with django forms
+    path('validation1/',views.validation1), 
     
     
     
