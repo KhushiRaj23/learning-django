@@ -257,3 +257,16 @@ def validation(request):
         Submitted_details={'name':name,'email':email,'password':password}
     return render(request,'validationform.html',{'Submitted_details':Submitted_details})
                
+
+# Form validation using Django form
+
+def validation1(request):
+    submitted_details=None
+    if request.method=='POST':
+        form=InputForm(request.POST)
+        if form.is_valid():
+            submitted_details=form.cleaned_data
+        return render(request,'validation1.html',{'form':form,'submitted_details':submitted_details})
+    form=InputForm()
+    return render(request,'validation1.html',{'form':form,'submitted_details':submitted_details})
+        
