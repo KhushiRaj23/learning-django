@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}
+Menu Items Page
+{% endblock %}
+
+{% block css %}
+h1{
+    color:orange;
+}
+table{
+    width:100%;
+    font-size:30px;
+    color:blue;
+    
+}
+{% endblock %}
+
+{% block content %}
+<h1>This is our menu items page</h1>
+<table border="2">
+    {% if item %}
+    <tr>
+        <td>{{item.Details}}</td>
+    </tr>
+    {% endif %}
+</table>
+<h3><a href="{% url 'menuitems' %}">back</a></h3>
+{% endblock %}
