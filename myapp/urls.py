@@ -69,5 +69,10 @@ urlpatterns = [
     path('validation1/',views.validation1), 
     
     
+    # Refresh / redirect
+    path('refreshredirect/',views.refreshRedirect),
+    path('success/',views.success,name='success'),
+    
+    
     
 ]
