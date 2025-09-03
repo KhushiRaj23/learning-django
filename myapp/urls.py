@@ -61,6 +61,10 @@ urlpatterns = [
     # Django forms
     path('djangoform/',views.formDjango),
     
+# Form validation using customised error message with simple template 
+    
+    path('validation/',views.validation),
+    
     
     
     

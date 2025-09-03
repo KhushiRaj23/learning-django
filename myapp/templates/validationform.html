@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Validation form</title>
+    <style>
+        span{
+            color: red;
+        }
+        h3{
+            color:rgb(189, 65, 211)
+        }
+        h2{
+            color: rgb(4, 154, 34);
+        }
+    </style>
+</head>  
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        Name:
+        <input type="text" name="name" value="{{name}}"> <br>
+        {% if name_error %}
+        <span>{{name_error}}</span>
+        {% endif %}
+        <br><br>
+        Email:
+        <input type="email" name="email" value="{{email}}"><br>
+        {% if email_error %}
+
+        <span>{{email_error}}</span>
+        {% endif %}
+        <br><br>
+        Password:
+        <input type="password" name="password" value="{{password}}"><br>
+        {% if password_error %}
+        <span>{{password_error}}</span>
+        {% endif %}
+        <br><br>
+        <input type="submit" value="Submit"><br>
+
+        {% if Submitted_details %}
+        <h2>The Submitted Details are:-</h2>
+        <h3>Name : {{Submitted_details.name}}</h3>
+        <h3>Email: {{Submitted_details.email}}</h3>
+        <!-- <h3>Password: {{Submitted_details.password}}</h3> -->
+        {% endif %}
+
+    </form>
+</body>          
+</html>    

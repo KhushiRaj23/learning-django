@@ -232,5 +232,28 @@ def formDjango(request):
         return render(request,'djangoform.html',{'form':form})
     form=InputForm()
     return render(request,'djangoform.html',{'form':form})
-    
+
+# Form validation using customised error message with simple template 
+
+def validation(request):
+    Submitted_details=None
+    if request.method=="POST":
+        name=request.POST.get("name")
+        email=request.POST.get("email")
+        password=request.POST.get("password")
         
+        name_error=email_error=password_error=None
+        if not name:
+            name_error="Name is mandatory."
+        if not email:
+            email_error="Email is mandatroy."
+        if not password:
+            password_error="Password is mandatroy."
+        if len(password)<6:
+            password_error="password must be more than 6 characters"
+        
+        if name_error or email_error or password_error:
+            return render(request,'validationform.html',{'name':name,'email':email,'password':password, 'name_error':name_error,'email_error':email_error,'password_error':password_error})
+        Submitted_details={'name':name,'email':email,'password':password}
+    return render(request,'validationform.html',{'Submitted_details':Submitted_details})
+               
